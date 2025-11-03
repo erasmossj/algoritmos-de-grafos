@@ -1,4 +1,5 @@
 CXX=g++
+CXX_VERSION=-std=c++17
 
 TARGET=dijkstra
 
@@ -8,7 +9,7 @@ BIN=$(TARGET).bin
 all: build
 
 build: $(SRC)
-	$(CXX) $(SRC) -o $(BIN)
+	$(CXX) $(CXX_VERSION) $(SRC) -o $(BIN)
 
 clean:
 	rm -f $(BIN)
