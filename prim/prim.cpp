@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#define int long long int
+#define ll long long int
 
 void help()
 {
@@ -18,11 +18,11 @@ void help()
     return;
 }
 
-void prim(int v0, vector<vector<pair<int, int>>> &adj, bool showSolution, int &custoTotal, ofstream &output)
+void prim(ll v0, vector<vector<pair<ll, ll>>> &adj, bool showSolution, ll &custoTotal, ofstream &output)
 {
-    int n = adj.size();
+    ll n = adj.size();
 
-    priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> pq;
+    priority_queue<tuple<ll, ll, ll>, vector<tuple<ll, ll, ll>>, greater<tuple<ll, ll, ll>>> pq;
     vector<bool> visited(n, false);
 
     visited[v0] = true;
@@ -55,18 +55,18 @@ void prim(int v0, vector<vector<pair<int, int>>> &adj, bool showSolution, int &c
     return;
 }
 
-signed main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     string inputFile = "";
     string outputFile = "";
     bool showHelp = false;
     bool showSolution = false;
-    int startVertex = 1;
+    ll startVertex = 1;
 
     if (argc < 1)
         return 1;
 
-    for (int i = 1; i < argc; i++)
+    for (ll i = 1; i < argc; i++)
     {
         string arg = argv[i];
 
@@ -101,15 +101,15 @@ signed main(int argc, char *argv[])
     ifstream input(inputFile);
     ofstream output(outputFile);
 
-    int n, m;
+    ll n, m;
     input >> n >> m;
 
-    vector<vector<pair<int, int>>> adj(n, vector<pair<int, int>>());
-    int custo = 0;
+    vector<vector<pair<ll, ll>>> adj(n, vector<pair<ll, ll>>());
+    ll custo = 0;
 
-    for (int i = 0; i < m; i++)
+    for (ll i = 0; i < m; i++)
     {
-        int v, u, w;
+        ll v, u, w;
         input >> v >> u >> w;
 
         adj[v - 1].push_back({u - 1, w});

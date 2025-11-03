@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#define int long long int
+#define ll long long int
 
 bool showSolution = false;
 
@@ -20,20 +20,20 @@ void help()
     return;
 }
 
-void make_set(int v, vector<int> &pai, vector<int> &rank)
+void make_set(ll v, vector<ll> &pai, vector<ll> &rank)
 {
     pai[v] = v;
     rank[v] = 0;
 }
 
-int find_set(int v, vector<int> &pai)
+ll find_set(ll v, vector<ll> &pai)
 {
     if (pai[v] == v)
         return v;
     return (pai[v] = find_set(pai[v], pai));
 }
 
-void unite(int x, int y, vector<int> &pai, vector<int> &rank)
+void unite(ll x, ll y, vector<ll> &pai, vector<ll> &rank)
 {
     x = find_set(x, pai);
     y = find_set(y, pai);
@@ -48,16 +48,22 @@ void unite(int x, int y, vector<int> &pai, vector<int> &rank)
     }
 }
 
-void kruskal(vector<tuple<int, int, int>> edges, vector<int> &pai, vector<int> &rank, const int &n, int &custo,
-             ofstream &output)
+void kruskal(vector<tuple<ll, ll, ll>> edges, const ll &n, ll &custo, ofstream &output)
 {
+    vector<ll> pai(n);
+    vector<ll> rank(n);
+    ll agmVertex = 0;
+
     sort(edges.begin(), edges.end());
 
-    for (int v = 0; v < n; v++)
+    for (ll v = 0; v < n; v++)
         make_set(v, pai, rank);
 
     for (auto e : edges)
     {
+        if (agmVertex == n - 1) 
+            break;
+            
         auto [w, v, u] = e;
 
         if (find_set(v, pai) != find_set(u, pai))
@@ -69,11 +75,12 @@ void kruskal(vector<tuple<int, int, int>> edges, vector<int> &pai, vector<int> &
             }
             unite(v, u, pai, rank);
             custo += w;
+            agmVertex++;
         }
     }
 }
 
-signed main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     string inputFile = "";
     string outputFile = "";
@@ -82,7 +89,7 @@ signed main(int argc, char *argv[])
     if (argc < 1)
         return 1;
 
-    for (int i = 1; i < argc; i++)
+    for (ll i = 1; i < argc; i++)
     {
         string arg = argv[i];
 
@@ -113,23 +120,21 @@ signed main(int argc, char *argv[])
     ifstream input(inputFile);
     ofstream output(outputFile);
 
-    int n, m;
+    ll n, m;
     input >> n >> m;
 
-    vector<tuple<int, int, int>> edges;
-    vector<int> pai(n);
-    vector<int> rank(n);
-    int custo = 0;
+    vector<tuple<ll, ll, ll>> edges;
+    ll custo = 0;
 
-    for (int i = 0; i < m; i++)
+    for (ll i = 0; i < m; i++)
     {
-        int v, u, w;
+        ll v, u, w;
         input >> v >> u >> w;
 
         edges.push_back(make_tuple(w, v - 1, u - 1));
     }
 
-    kruskal(edges, pai, rank, n, custo, output);
+    kruskal(edges, n, custo, output);
 
     if (!showSolution)
     {

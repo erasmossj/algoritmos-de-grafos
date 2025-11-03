@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#define int long long int
+#define ll long long int
 
 void help()
 {
@@ -16,7 +16,7 @@ void help()
     return;
 }
 
-void dfs_rec(int v, vector<vector<int>> &adj, stack<int> &posOrdem, vector<bool> &visited)
+void dfs_rec(ll v, vector<vector<ll>> &adj, stack<ll> &posOrdem, vector<bool> &visited)
 {
     visited[v] = true;
 
@@ -30,20 +30,20 @@ void dfs_rec(int v, vector<vector<int>> &adj, stack<int> &posOrdem, vector<bool>
     posOrdem.push(v);
 }
 
-void dfs(vector<vector<int>> &adj, stack<int> &posOrdem)
+void dfs(vector<vector<ll>> &adj, stack<ll> &posOrdem)
 {
-    int n = adj.size();
+    ll n = adj.size();
 
     vector<bool> visited(n, false);
 
-    for (int v = 0; v < n; v++)
+    for (ll v = 0; v < n; v++)
     {
         if (!visited[v])
             dfs_rec(v, adj, posOrdem, visited);
     }
 }
 
-void dfs_recR(int v, vector<vector<int>> &adjR, vector<bool> &visited, ofstream &output)
+void dfs_recR(ll v, vector<vector<ll>> &adjR, vector<bool> &visited, ofstream &output)
 {
     visited[v] = true;
 
@@ -59,15 +59,15 @@ void dfs_recR(int v, vector<vector<int>> &adjR, vector<bool> &visited, ofstream 
     }
 }
 
-void dfsR(vector<vector<int>> &adjR, stack<int> &posOrdem, ofstream &output)
+void dfsR(vector<vector<ll>> &adjR, stack<ll> &posOrdem, ofstream &output)
 {
-    int n = adjR.size();
+    ll n = adjR.size();
 
     vector<bool> visited(n, false);
 
     while (!posOrdem.empty())
     {
-        int v = posOrdem.top();
+        ll v = posOrdem.top();
         posOrdem.pop();
 
         if (!visited[v])
@@ -81,24 +81,24 @@ void dfsR(vector<vector<int>> &adjR, stack<int> &posOrdem, ofstream &output)
     }
 }
 
-void kosaraju(vector<vector<int>> &adj, vector<vector<int>> &adjR, ofstream &output)
+void kosaraju(vector<vector<ll>> &adj, vector<vector<ll>> &adjR, ofstream &output)
 {
-    stack<int> posOrdem;
+    stack<ll> posOrdem;
     dfs(adj, posOrdem);
     dfsR(adjR, posOrdem, output);
 }
 
-signed main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     string inputFile = "";
     string outputFile = "";
     bool showHelp = false;
-    int startVertex = 1;
+    ll startVertex = 1;
 
     if (argc < 1)
         return 1;
 
-    for (int i = 1; i < argc; i++)
+    for (ll i = 1; i < argc; i++)
     {
         string arg = argv[i];
 
@@ -129,15 +129,15 @@ signed main(int argc, char *argv[])
     ifstream input(inputFile);
     ofstream output(outputFile);
 
-    int n, m;
+    ll n, m;
     input >> n >> m;
 
-    vector<vector<int>> adj(n, vector<int>());
-    vector<vector<int>> adjR(n, vector<int>());
+    vector<vector<ll>> adj(n, vector<ll>());
+    vector<vector<ll>> adjR(n, vector<ll>());
 
-    for (int i = 0; i < m; i++)
+    for (ll i = 0; i < m; i++)
     {
-        int v, u;
+        ll v, u;
         input >> v >> u;
 
         adj[v - 1].push_back(u - 1);

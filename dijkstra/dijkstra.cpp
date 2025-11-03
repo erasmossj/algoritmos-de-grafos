@@ -2,30 +2,30 @@
 
 using namespace std;
 
-#define int long long int
+#define ll long long int
 
 void help()
 {
-    cout << "Uso: ./programa -f <arquivo_entrada>"
+    cout << "Uso: ./programa -f <arquivo_llrada>"
          << " [-o <arquivo_saida>]"
          << " [-i <vertice_inicial>] [-s]" << endl;
     cout << "-h : mostra o help" << endl;
-    cout << "-f <arquivo> : arquivo que contem o grafo de entrada" << endl;
+    cout << "-f <arquivo> : arquivo que cllem o grafo de llrada" << endl;
     cout << "-o <arquivo> : redireciona a saida para o arquivo indicado" << endl;
     cout << "-i <vertice> : define o vertice inicial (padrao = 1)" << endl;
 
     return;
 }
 
-void dijkstra(int v0, vector<vector<pair<int, int>>> &adj, vector<int> &dist)
+void dijkstra(ll v0, vector<vector<pair<ll, ll>>> &adj, vector<ll> &dist)
 {
-    int n = adj.size();
+    ll n = adj.size();
 
     dist[v0] = 0;
 
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
 
-    for (int v = 0; v < n; v++)
+    for (ll v = 0; v < n; v++)
         pq.push({v, dist[v]});
 
     while (!pq.empty())
@@ -49,12 +49,12 @@ signed main(int argc, char *argv[])
     string inputFile = "";
     string outputFile = "";
     bool showHelp = false;
-    int startVertex = 1;
+    ll startVertex = 1;
 
     if (argc < 1)
         return 1;
 
-    for (int i = 1; i < argc; i++)
+    for (ll i = 1; i < argc; i++)
     {
         string arg = argv[i];
 
@@ -85,15 +85,15 @@ signed main(int argc, char *argv[])
     ifstream input(inputFile);
     ofstream output(outputFile);
 
-    int n, m;
+    ll n, m;
     input >> n >> m;
 
-    vector<vector<pair<int, int>>> adj(n, vector<pair<int, int>>());
-    vector<int> dist(n, INT_MAX);
+    vector<vector<pair<ll, ll>>> adj(n, vector<pair<ll, ll>>());
+    vector<ll> dist(n, INT_MAX);
 
-    for (int i = 0; i < m; i++)
+    for (ll i = 0; i < m; i++)
     {
-        int v, u, w;
+        ll v, u, w;
         input >> v >> u >> w;
 
         adj[v - 1].push_back({u - 1, w});
@@ -102,7 +102,7 @@ signed main(int argc, char *argv[])
 
     dijkstra(startVertex - 1, adj, dist);
 
-    for (int v = 0; v < n; v++)
+    for (ll v = 0; v < n; v++)
     {
         cout << v + 1 << ":" << dist[v] << " ";
         output << v + 1 << ":" << dist[v] << " ";
