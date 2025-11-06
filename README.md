@@ -39,7 +39,11 @@ algoritmos-de-grafos/
   # ou
   g++ -std=c++17 prim.cpp -o prim.bin
   ```
-4. Execute com os parâmetros indicados (use o -h, para chamar o help):
+4. Para executar individualmente, execute com os parâmetros indicados (use o -h, para chamar o help):
   ```bash
   ./prim -f arquivo-entrada -i 1 -o arquivo_saida -s
   ```
+5. Para executar com as baterias de testes, compile o código e mova os binários (.bin) para a pasta Bat1 e execute o arquivo Bat1.sh:
+   ```bash
+   ./Bat1.sh
+   ```
