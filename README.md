@@ -19,13 +19,14 @@ algoritmos-de-grafos/
 ├── kruskal/ ← implementação do algoritmo de Kruskal
 ├── dijkstra/ ← implementação do algoritmo de Dijkstra
 ├── kosaraju/ ← implementação do algoritmo de Kosaraju
+├── Bat1/ ← bateria de testes: instâncias, gabaritos e script Bat1.sh
 └── README.md ← README
 ```
 
 ## Como Compilar e Executar  
 1. Clone o repositório:  
    ```bash
-   git clone https://github.com/erasmo-junior-dev/algoritmos-de-grafos.git
+   git clone https://github.com/erasmossj/algoritmos-de-grafos.git
    cd algoritmos-de-grafos
    ```
 
@@ -47,3 +48,13 @@ algoritmos-de-grafos/
    ```bash
    ./Bat1.sh
    ```
+
+## Tecnologias
+
+- C++17 (`g++`)
+- Make
+- Shell script (bateria de testes em `Bat1/`)
+
+## Autor
+
+Desenvolvido por **Erasmo da Silva Sá Junior** — [GitHub](https://github.com/erasmossj) · [LinkedIn](https://www.linkedin.com/in/erasmo-junior-883010309/).
