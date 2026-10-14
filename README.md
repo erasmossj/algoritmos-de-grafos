@@ -1,4 +1,4 @@
-# Implementação de Algoritmos de Grafos  
+# Algoritmos de Grafos
 
 Repositório com implementações em **C++** de algoritmos clássicos de grafos, desenvolvidos para estudo e prática acadêmica.
 
